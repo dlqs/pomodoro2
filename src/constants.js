@@ -1,5 +1,5 @@
 const initialDurations = {
-  pomodoro: 1600,
+  pomodoro: 1500,
   longBreak: 600,
   shortBreak: 300
 }

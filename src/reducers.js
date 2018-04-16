@@ -1,4 +1,10 @@
-import { SET_COUNTER, DECREMENT_COUNTER, SET_DURATION, MANUAL_SWITCH_SESSION, AUTO_SWITCH_SESSION } from './actions'
+import { SET_COUNTER,
+  DECREMENT_COUNTER,
+  SET_DURATION,
+  MANUAL_SWITCH_SESSION,
+  AUTO_SWITCH_SESSION,
+  RESET_COUNTER,
+} from './actions'
 import initialDurations from './constants'
 import { combineReducers } from 'redux'
 
@@ -131,6 +137,12 @@ function crossSliceReducer(state, action) {
         count: counter(state.count, {type:'SET_COUNTER',
                                      value: state.durations[action.name]}),
         session: manualSwitchSession(state.session, action)
+      }
+    case 'RESET_COUNTER':
+      return {
+        ...state,
+        count: counter(state.count, {type:'SET_COUNTER',
+                        value: state.durations[state.session.currentSession]})
       }
     default:
       return state

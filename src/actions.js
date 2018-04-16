@@ -3,6 +3,7 @@ export const DECREMENT_COUNTER = 'DECREMENT_COUNTER'
 export const SET_DURATION = 'SET_DURATION'
 export const MANUAL_SWITCH_SESSION = 'MANUAL_SWITCH_SESSION'
 export const AUTO_SWITCH_SESSION = 'AUTO_SWITCH_SESSION'
+export const RESET_COUNTER = 'RESET_COUNTER'
 
 export function setCounter(value) {
   return {
@@ -14,6 +15,12 @@ export function setCounter(value) {
 export function decrementCounter() {
   return {
     type: DECREMENT_COUNTER,
+  }
+}
+
+export function resetCounter() {
+  return {
+    type: RESET_COUNTER,
   }
 }
 
