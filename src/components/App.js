@@ -1,13 +1,12 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import SessionSelector from './SessionSelector'
 import TimeDisplay from './TimeDisplay'
 import Controller from './Controller'
+import DurationChanger from './DurationChanger'
 import { connect } from 'react-redux'
 import { decrementCounter,
   autoSwitchSession,
   manualSwitchSession,
-  setDuration,
   resetCounter
 } from '../actions'
 
@@ -43,13 +42,15 @@ class App extends React.Component {
       <div>
         <SessionSelector onClick={ this.props.manualSwitchSession }/>
         <TimeDisplay time={this.props.count}/>
-        <br/>
         { this.props.currentSession }
+        <br/>
+        { this.props.currentNumShort }/{ this.props.numShortToLong } short breaks
         <Controller
           onStart={this.start}
           onPause={this.pause}
           onReset={this.props.resetCounter}
         />
+        <DurationChanger/>
       </div>
     )
   }
@@ -60,6 +61,7 @@ const mapStateToProps = state => {
     count: state.count,
     currentSession: state.session.currentSession,
     currentNumShort: state.session.currentNumShort,
+    numShortToLong: state.session.numShortToLong,
   }
 }
 
@@ -69,7 +71,6 @@ const mapDispatchToProps = dispatch => {
     resetCounter: () => dispatch(resetCounter()),
     switchSession: () => dispatch(autoSwitchSession()),
     manualSwitchSession: name => dispatch(manualSwitchSession(name)),
-    setDuration: (duration, value) => dispatch(setDuration(duration, value))
     }
 }
 

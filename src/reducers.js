@@ -16,9 +16,9 @@ const initialSession = {
 
 function counter(count=initialDurations.pomodoro, action) {
   switch(action.type) {
-    case 'SET_COUNTER':
+    case SET_COUNTER:
       return action.value
-    case 'DECREMENT_COUNTER':
+    case DECREMENT_COUNTER:
       return count - 1
     default:
       return count
@@ -34,7 +34,7 @@ function setSession(session=initialSession, action) {
 
 function manualSwitchSession(session=initialSession, action) {
   switch(action.type) {
-    case 'MANUAL_SWITCH_SESSION':
+    case MANUAL_SWITCH_SESSION:
       if (session === action.name) {
         // do not do anything on same session
         return session
@@ -67,7 +67,7 @@ function manualSwitchSession(session=initialSession, action) {
 
 function setDurations(durations=initialDurations, action) {
   switch(action.type) {
-    case 'SET_DURATION':
+    case SET_DURATION:
       return {
         ...durations,
         [action.payload.durationName]:action.payload.value
@@ -79,7 +79,7 @@ function setDurations(durations=initialDurations, action) {
 
 function autoSwitchSession(state, action) {
   switch(action.type) {
-    case 'AUTO_SWITCH_SESSION':
+    case AUTO_SWITCH_SESSION:
       if (state.session.currentSession === 'pomodoro') {
         if (state.session.currentNumShort >= state.session.numShortToLong) {
           // activate long break
@@ -115,7 +115,6 @@ function autoSwitchSession(state, action) {
           }
         }
       }
-      break
     default:
       return state
   }
@@ -129,16 +128,16 @@ const combinedReducer = combineReducers({
 
 function crossSliceReducer(state, action) {
   switch(action.type) {
-    case 'AUTO_SWITCH_SESSION':
+    case AUTO_SWITCH_SESSION:
       return autoSwitchSession(state, action)
-    case 'MANUAL_SWITCH_SESSION':
+    case MANUAL_SWITCH_SESSION:
       return {
         ...state,
         count: counter(state.count, {type:'SET_COUNTER',
                                      value: state.durations[action.name]}),
         session: manualSwitchSession(state.session, action)
       }
-    case 'RESET_COUNTER':
+    case RESET_COUNTER:
       return {
         ...state,
         count: counter(state.count, {type:'SET_COUNTER',
