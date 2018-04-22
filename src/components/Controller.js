@@ -5,9 +5,9 @@ import PropTypes from 'prop-types'
 const Controller = ({ onStart, onPause, onReset }) => (
   <Container>
   <Row>
-  <Button onClick={onStart}> start </Button>
-  <Button onClick={onPause}> pause </Button>
-  <Button onClick={onReset}> reset </Button>
+  <Button color='success' onClick={onStart}> start </Button>
+  <Button color='warning' onClick={onPause}> pause </Button>
+  <Button color='info' onClick={onReset}> reset </Button>
   </Row>
   </Container>
 )

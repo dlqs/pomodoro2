@@ -42,17 +42,18 @@ class App extends React.Component {
     return (
       <Container>
       <Row>
-        <SessionSelector onClick={ this.props.manualSwitchSession }/>
+        <SessionSelector
+          session={this.props.currentSession}
+          onClick={this.props.manualSwitchSession}
+        />
       </Row>
       <Row>
-      <Col>
         <TimeDisplay
           time={this.props.count}
           session={this.props.currentSession}
           currentNumShort={this.props.currentNumShort}
           numShortToLong={this.props.numShortToLong}
         />
-      </Col>
       </Row>
       <Row>
         <Controller
