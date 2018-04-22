@@ -1,4 +1,5 @@
 import React from 'react'
+import { Container, Row, Col } from 'reactstrap';
 import SessionSelector from './SessionSelector'
 import TimeDisplay from './TimeDisplay'
 import Controller from './Controller'
@@ -39,19 +40,31 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div>
+      <Container>
+      <Row>
         <SessionSelector onClick={ this.props.manualSwitchSession }/>
-        <TimeDisplay time={this.props.count}/>
-        { this.props.currentSession }
-        <br/>
-        { this.props.currentNumShort }/{ this.props.numShortToLong } short breaks
+      </Row>
+      <Row>
+      <Col>
+        <TimeDisplay
+          time={this.props.count}
+          session={this.props.currentSession}
+          currentNumShort={this.props.currentNumShort}
+          numShortToLong={this.props.numShortToLong}
+        />
+      </Col>
+      </Row>
+      <Row>
         <Controller
           onStart={this.start}
           onPause={this.pause}
           onReset={this.props.resetCounter}
         />
+      </Row>
+      <Row>
         <DurationChanger/>
-      </div>
+      </Row>
+      </Container>
     )
   }
 }

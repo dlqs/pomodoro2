@@ -1,12 +1,15 @@
 import React from 'react'
+import { Container, Row, Col, Button} from 'reactstrap';
 import PropTypes from 'prop-types'
 
 const Controller = ({ onStart, onPause, onReset }) => (
-  <div>
-  <button onClick={onStart}> start </button>
-  <button onClick={onPause}> pause </button>
-  <button onClick={onReset}> reset </button>
-  </div>
+  <Container>
+  <Row>
+  <Button onClick={onStart}> start </Button>
+  <Button onClick={onPause}> pause </Button>
+  <Button onClick={onReset}> reset </Button>
+  </Row>
+  </Container>
 )
 
 Controller.propTypes = {

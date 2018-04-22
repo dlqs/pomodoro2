@@ -1,30 +1,35 @@
 import React from 'react'
+import { Container, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux'
 import { setDuration } from '../actions'
 
 const DurationChanger = ({durations, setDuration }) => (
-  <div>
-    Pomodoro length
-    <input
-      type="number"
-      value={durations.pomodoro}
-      onChange={e => setDuration('pomodoro', Number(e.target.value))}
-    />
-    <br/>
-    Short break length
-    <input
-      type="number"
-      value={durations.shortBreak}
-      onChange={e => setDuration('shortBreak', Number(e.target.value))}
-    />
-    <br/>
-    Long break length
-    <input
-      type="number"
-      value={durations.longBreak}
-      onChange={e => setDuration('longBreak', Number(e.target.value))}
-    />
-  </div>
+  <Row>
+    <Col>
+      Pomodoro length
+      <input
+        type="number"
+        value={durations.pomodoro}
+        onChange={e => setDuration('pomodoro', Number(e.target.value))}
+      />
+    </Col>
+    <Col >
+      Short break length
+      <input
+        type="number"
+        value={durations.shortBreak}
+        onChange={e => setDuration('shortBreak', Number(e.target.value))}
+      />
+    </Col>
+    <Col>
+      Long break length
+      <input
+        type="number"
+        value={durations.longBreak}
+        onChange={e => setDuration('longBreak', Number(e.target.value))}
+      />
+    </Col>
+  </Row>
 )
 
 const mapStateToProps = state => {

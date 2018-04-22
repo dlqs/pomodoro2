@@ -1,12 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Container, Row, Col, Button } from 'reactstrap';
 
 const SessionSelector = ({ onClick }) => (
-  <div>
-  <button onClick={ () => onClick('pomodoro') }> pomodoro </button>
-  <button onClick={ () => onClick('shortBreak') }> shortBreak </button>
-  <button onClick={ () => onClick('longBreak') }> longBreak </button>
-  </div>
+  <Container>
+  <Row>
+  <Button onClick={ () => onClick('pomodoro') }> pomodoro </Button>
+  <Button onClick={ () => onClick('shortBreak') }> shortBreak </Button>
+  <Button onClick={ () => onClick('longBreak') }> longBreak </Button>
+  </Row>
+  </Container>
 )
 
 SessionSelector.propTypes = {
